@@ -5,3 +5,76 @@
 /* ============================================
           tailwind utility classes    
 ==============================================*/
+@layer base {
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
+	* {
+		@apply font-body text-dark;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-heading;
+	}
+	h6 {
+		@apply text-sm;
+	}
+	h5 {
+		@apply text-lg font-semibold mt-5 text-opacity-70;
+	}
+	h4 {
+		@apply text-xl;
+	}
+	h3 {
+		@apply text-2xl;
+	}
+	h2 {
+		@apply text-4xl;
+	}
+	h1 {
+		@apply text-5xl font-medium;
+	}
+	span {
+		@apply text-inherit;
+	}
+}
+
+@layer components {
+	.flex-list-button {
+		@apply whitespace-nowrap text-sm px-5 py-3 border border-dark border-opacity-25 rounded-full cursor-pointer shadow-sm overflow-hidden hover:text-white relative active:scale-[0.8];
+		transition: all 0.3s ease-in-out;
+	}
+	.flex-list-button span {
+		@apply relative z-[2];
+	}
+	.flex-list-button.active {
+		@apply bg-opacity-100 bg-dark text-white;
+	}
+
+	.flex-list-button::before {
+		content: "";
+		@apply w-full bg-dark h-0 absolute left-0 bottom-0 hover:h-full hover:top-0 bg-opacity-80 rounded-full;
+		transition: all 0.4s ease-in-out;
+	}
+	input {
+		@apply w-full outline-none border-b border-dark p-2 bg-transparent;
+	}
+	select {
+		@apply w-full outline-none border-b border-dark p-2 bg-transparent;
+	}
+	textarea {
+		@apply w-full outline-none h-28 p-2 border-b border-dark shadow-md bg-transparent;
+	}
+
+	.error {
+		@apply text-sm text-red-500;
+	}
+	.btn {
+		@apply px-5 py-2 bg-white;
+	}
+}
