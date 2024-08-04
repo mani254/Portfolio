@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Contact from "./Pages/Contact";
 import gsap from "gsap";
 import "./App.css";
+import SmoothScroll from "./Components/smoothScroll";
 
 export const RefsContext = React.createContext();
 
@@ -14,7 +15,7 @@ function App() {
 	// Event listener to check for the mobile view and resize
 	useEffect(() => {
 		function handleResize() {
-			window.innerWidth > 768 ? setMobile(false) : setMobile(true);
+			window.innerWidth > 600 ? setMobile(false) : setMobile(true);
 		}
 		window.addEventListener("resize", handleResize);
 		handleResize(); // Set initial state based on current window size
@@ -85,14 +86,16 @@ function App() {
 	}, [mobile]);
 
 	return (
-		<div className="bg-zinc-100 relative">
-			<div className="w-3 h-3 bg-dark rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-10" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>
-			<RefsContext.Provider value={{ hoverRefs }}>
-				<main>
-					<Contact />
-				</main>
-			</RefsContext.Provider>
-		</div>
+		<SmoothScroll>
+			<div className="bg-zinc-100 relative">
+				{!mobile && <div className="w-3 h-3 bg-dark rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-10" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>}
+				<RefsContext.Provider value={{ hoverRefs }}>
+					<main>
+						<Contact />
+					</main>
+				</RefsContext.Provider>
+			</div>
+		</SmoothScroll>
 	);
 }
 

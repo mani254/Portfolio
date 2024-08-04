@@ -1,11 +1,17 @@
 .has-c-over {
 	position: relative;
 	z-index: 10;
-	cursor: none;
+	cursor: pointer;
 }
 .icon img.has-c-over {
 	transition: filter 0.3s ease-in;
 }
-.icon img.has-c-over:hover {
-	filter: invert(100%);
+
+@media only screen and (min-width: 600px) {
+	.has-c-over {
+		cursor: none;
+	}
+	.icon img.has-c-over:hover {
+		filter: invert(100%);
+	}
 }
