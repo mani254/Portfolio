@@ -1,8 +1,8 @@
 .has-c-over {
 	position: relative;
-	z-index: 10;
 	cursor: pointer;
 }
+
 .icon img.has-c-over {
 	transition: filter 0.3s ease-in;
 }
@@ -13,5 +13,56 @@
 	}
 	.icon img.has-c-over:hover {
 		filter: invert(100%);
+		z-index: 51;
 	}
+
+	h2.has-c-over,
+	p.has-c-over {
+		position: relative !important;
+	}
+	h2.has-c-over::before,
+	p.has-c-over::before {
+		content: attr(data-content);
+		top: 0;
+		left: 0;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		color: rgb(45, 45, 45);
+		clip-path: circle(0px at var(--clip-x, 0) var(--clip-y, 0));
+		will-change: clip-path;
+	}
+
+	h2.highlight:hover::before,
+	p.highlight:hover::before {
+		clip-path: circle(33px at var(--clip-x, 0) var(--clip-y, 0));
+		color: rgb(238, 238, 238);
+		transition: color 0.3s linear;
+	}
+}
+
+/* =================================
+      css for the hamburger 
+===================================== */
+
+.hamburger.active span:nth-child(1) {
+	transform: translateY(0px) rotate(45deg);
+	width: 80%;
+}
+.hamburger.active span:nth-child(2) {
+	transform: translateY(0px) rotate(-45deg);
+	width: 80%;
+}
+
+/* =================================
+   handle scroll whenn nav is open nav menu
+===================================== */
+.menu {
+	clip-path: circle(30px at 100% 0px);
+}
+@media screen and (min-width: 768px) {
+	/* #root.scroll-none {
+		max-height: calc(100vh + 1px);
+		overflow: scroll;
+	} */
 }

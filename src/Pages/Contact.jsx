@@ -104,6 +104,12 @@ function Contact() {
 		}, 200);
 	}
 
+	const handleHoverRefs = (el) => {
+		if (el && !hoverRefs.current.includes(el)) {
+			hoverRefs.current.push(el);
+		}
+	};
+
 	return (
 		<div className="container max-w-[800px] py-10 sm:py-20">
 			<div className="flex items-center  flex-col sm:flex-row gap-1 sm:gap-3">
@@ -115,64 +121,22 @@ function Contact() {
 				<h1 className="text-center md:text-start">Get in touch</h1>
 				<div className="flex items-center justify-center mt-3">
 					<span className="icon">
-						<img
-							className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4"
-							src={github}
-							ref={(el) => {
-								hoverRefs.current.push(el);
-							}}
-							alt="github svg icon"
-						/>
+						<img className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4" src={github} ref={handleHoverRefs} alt="github svg icon" />
 					</span>
 					<span className="icon">
-						<img
-							className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4"
-							src={discord}
-							ref={(el) => {
-								hoverRefs.current.push(el);
-							}}
-							alt="discord svg icon"
-						/>
+						<img className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4" src={discord} ref={handleHoverRefs} alt="discord svg icon" />
 					</span>
 					<span className="icon">
-						<img
-							className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4"
-							src={linkedin}
-							ref={(el) => {
-								hoverRefs.current.push(el);
-							}}
-							alt="likedin svg icon"
-						/>
+						<img className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4" src={linkedin} ref={handleHoverRefs} alt="likedin svg icon" />
 					</span>
 					<span className="icon">
-						<img
-							className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4"
-							src={instagram}
-							ref={(el) => {
-								hoverRefs.current.push(el);
-							}}
-							alt="instagram svg icon"
-						/>
+						<img className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4" src={instagram} ref={handleHoverRefs} alt="instagram svg icon" />
 					</span>
 					<span className="icon">
-						<img
-							className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4"
-							src={twitter}
-							ref={(el) => {
-								hoverRefs.current.push(el);
-							}}
-							alt="twitter svg icon"
-						/>
+						<img className=" bounce-image has-c-over aspect-ratio-1/1 h-6 mr-4" src={twitter} ref={handleHoverRefs} alt="twitter svg icon" />
 					</span>
 					<span className="icon">
-						<img
-							className=" bounce-image has-c-over aspect-ratio-1/1 h-6"
-							src={youtube}
-							ref={(el) => {
-								hoverRefs.current.push(el);
-							}}
-							alt="youtube svg icon"
-						/>
+						<img className=" bounce-image has-c-over aspect-ratio-1/1 h-6" src={youtube} ref={handleHoverRefs} alt="youtube svg icon" />
 					</span>
 				</div>
 			</div>
@@ -183,7 +147,6 @@ function Contact() {
 				{services.map((value, index) => {
 					return (
 						<div key={index} onClick={() => setFormData((prev) => ({ ...prev, service: value }))} className={`service-button flex-list-button ${value === formData.service && "active"}`}>
-							{console.log(value, formData.service)}
 							<span>{value}</span>
 						</div>
 					);

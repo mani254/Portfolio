@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import Contact from "./Pages/Contact";
 import gsap from "gsap";
 import "./App.css";
-import SmoothScroll from "./Components/smoothScroll";
 
 export const RefsContext = React.createContext();
+export const MobileContext = React.createContext();
+
+import { Routes, Route } from "react-router-dom";
+import SmoothScroll from "./Components/smoothScroll";
+import Home from "./Pages/Home";
+import Contact from "./Pages/Contact";
+import Navbar from "./Components/Navbar";
 
 function App() {
 	const [mobile, setMobile] = useState(true);
@@ -25,11 +30,18 @@ function App() {
 		};
 	}, []);
 
-	// Event listener to handle custom cursor event
-	function mouseFunction(event) {
+	//event listener to check and handle custorm cusor follow the cursor
+	useEffect(() => {
+		if (mobile) return;
+		window.addEventListener("mousemove", handleMouseMove);
+		return () => {
+			window.removeEventListener("mousemove", handleMouseMove);
+		};
+	}, [mobile]);
+
+	function handleMouseMove(event) {
 		const x = event.pageX;
 		const y = event.pageY;
-
 		if (cursorRef.current) {
 			gsap.to(cursorRef.current, {
 				left: x,
@@ -38,34 +50,54 @@ function App() {
 				ease: "circle.in",
 			});
 		}
-	}
-	useEffect(() => {
-		if (!mobile) {
-			window.addEventListener("mousemove", mouseFunction);
-			return () => {
-				window.removeEventListener("mousemove", mouseFunction);
-			};
-		}
-	}, [mobile]);
 
-	function scaleCursor() {
-		if (cursorRef.current) {
-			gsap.to(cursorRef.current, {
-				scale: 4.5,
-				duration: 0.3,
-				ease: "power4.inOut",
+		if (!mobile && hoverRefs.current.length > 0) {
+			hoverRefs.current.forEach((ref) => {
+				const rect = ref.getBoundingClientRect();
+				const isHovered = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+				const isNear = x >= rect.left - 20 && x <= rect.right + 20 && y >= rect.top - 10 && y <= rect.bottom + 10;
+
+				if (isNear) {
+					const centerX = rect.left + rect.width / 2;
+					const centerY = rect.top + rect.height / 2;
+					const deltaX = x - centerX;
+					const deltaY = y - centerY;
+					const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+					const maxDistance = 7;
+
+					const moveX = (deltaX / distance) * Math.min(distance, maxDistance);
+					const moveY = (deltaY / distance) * Math.min(distance, maxDistance);
+
+					gsap.to(ref, {
+						x: moveX,
+						y: moveY,
+						duration: 0.2,
+						ease: "power1.in",
+					});
+				} else {
+					gsap.to(ref, {
+						x: 0,
+						y: 0,
+						duration: 0.2,
+					});
+				}
+				if (isHovered) {
+					const clipX = x - rect.left;
+					const clipY = y - rect.top;
+					if (ref.textContent) {
+						ref.setAttribute("data-content", ref.textContent);
+					}
+					ref.style.setProperty("--clip-x", `${clipX + 6}px`);
+					ref.style.setProperty("--clip-y", `${clipY + 4}px`);
+					ref.classList.add("highlight");
+				} else {
+					ref.classList.remove("highlight");
+				}
 			});
 		}
 	}
-	function resetCursorScale() {
-		if (cursorRef.current) {
-			gsap.to(cursorRef.current, {
-				scale: 1,
-				duration: 0.3,
-				ease: "power3.inOut",
-			});
-		}
-	}
+
+	//event listener to handle the scale of the cusor
 	useEffect(() => {
 		if (!mobile && hoverRefs.current.length > 0) {
 			hoverRefs.current.forEach((ref) => {
@@ -85,14 +117,39 @@ function App() {
 		}
 	}, [mobile]);
 
+	function scaleCursor() {
+		if (cursorRef.current) {
+			gsap.to(cursorRef.current, {
+				scale: 5.5,
+				duration: 0.3,
+				ease: "power4.inOut",
+			});
+		}
+	}
+	function resetCursorScale() {
+		if (cursorRef.current) {
+			gsap.to(cursorRef.current, {
+				scale: 1,
+				duration: 0.3,
+				ease: "power3.inOut",
+			});
+		}
+	}
+
 	return (
 		<SmoothScroll>
 			<div className="bg-zinc-100 relative">
-				{!mobile && <div className="w-3 h-3 bg-dark rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-10" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>}
+				{!mobile && <div className="w-3 h-3 bg-black rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-70" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>}
 				<RefsContext.Provider value={{ hoverRefs }}>
-					<main>
-						<Contact />
-					</main>
+					<MobileContext.Provider value={{ mobile }}>
+						<main id="main">
+							<Navbar />
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/contact" element={<Contact />} />
+							</Routes>
+						</main>
+					</MobileContext.Provider>
 				</RefsContext.Provider>
 			</div>
 		</SmoothScroll>
@@ -100,3 +157,25 @@ function App() {
 }
 
 export default App;
+
+// function mouseFunction(event) {
+// 	const x = event.pageX;
+// 	const y = event.pageY;
+
+// 	if (cursorRef.current) {
+// 		gsap.to(cursorRef.current, {
+// 			left: x,
+// 			top: y,
+// 			duration: 0.25,
+// 			ease: "circle.in",
+// 		});
+// 	}
+// }
+// useEffect(() => {
+// 	if (!mobile) {
+// 		window.addEventListener("mousemove", mouseFunction);
+// 		return () => {
+// 			window.removeEventListener("mousemove", mouseFunction);
+// 		};
+// 	}
+// }, [mobile]);

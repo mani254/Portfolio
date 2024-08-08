@@ -17,9 +17,9 @@
 	body {
 		overflow-x: hidden;
 	}
+
 	html,
-	body,
-	#root {
+	body {
 		height: 100%;
 		width: 100%;
 	}
@@ -79,10 +79,6 @@
 	}
 	textarea {
 		@apply w-full outline-none h-28 p-2 border-b border-dark shadow-md bg-transparent;
-	}
-
-	.error {
-		@apply text-sm text-red-500;
 	}
 	.btn {
 		@apply px-10 py-3 shadow-sm rounded-lg shadow-purple-500 text-white  font-semibold tracking-wider hover:tracking-widest hover:scale-[1.02] hover:shadow-md hover:shadow-violet-500;

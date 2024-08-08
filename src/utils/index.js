@@ -6,8 +6,9 @@ import twitter from '../assets/icons/twitter.svg'
 import github from '../assets/icons/github.svg'
 import discord from '../assets/icons/discord.svg'
 import youtube from '../assets/icons/youtube.svg'
+import logo from '../assets/images/logo.svg'
 
-export { emoji }
+export { emoji, logo }
 
 export { instagram, linkedin, twitter, github, discord, youtube }
 
