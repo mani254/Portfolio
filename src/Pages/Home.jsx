@@ -1,15 +1,12 @@
 import React from "react";
-// import Services from "../Components/Services";
-// import Testimonials from "../Components/Testimonials";
+import Testimonials from "../Components/Testimonials";
 
 function Home() {
 	return (
 		<div>
-			{/* <div className="h-96"></div>
-			<Services /> */}
-			{/* <div className="h-96"></div>
+			<div className="h-screen"></div>
 			<Testimonials />
-			<div className="h-96"></div> */}
+			<div className="h-screen"></div>
 		</div>
 	);
 }

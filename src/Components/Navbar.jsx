@@ -50,6 +50,25 @@ function Navbar() {
 		};
 	}, [menuActive]);
 
+	//use effect  to disable the scroll when menu is opened
+	useEffect(() => {
+		const menuElement = document.getElementById("root");
+
+		if (menuElement) {
+			if (menuActive) {
+				menuElement.classList.add("scroll-none");
+			} else {
+				menuElement.classList.remove("scroll-none");
+			}
+		}
+
+		return () => {
+			if (menuElement) {
+				menuElement.classList.remove("scroll-none");
+			}
+		};
+	}, [menuActive]);
+
 	const handleHoverRefs = (el) => {
 		if (el && !hoverRefs.current.includes(el)) {
 			hoverRefs.current.push(el);
@@ -158,22 +177,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-//use effect  to disable the scroll when menu is opened
-// useEffect(() => {
-// 	const menuElement = document.getElementById("root");
-
-// 	if (menuElement) {
-// 		if (menuActive) {
-// 			menuElement.classList.add("scroll-none");
-// 		} else {
-// 			menuElement.classList.remove("scroll-none");
-// 		}
-// 	}
-
-// 	return () => {
-// 		if (menuElement) {
-// 			menuElement.classList.remove("scroll-none");
-// 		}
-// 	};
-// }, [menuActive]);

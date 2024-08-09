@@ -35,7 +35,7 @@
 
 	h2.highlight:hover::before,
 	p.highlight:hover::before {
-		clip-path: circle(33px at var(--clip-x, 0) var(--clip-y, 0));
+		clip-path: circle(28px at var(--clip-x, 0) var(--clip-y, 0));
 		color: rgb(238, 238, 238);
 		transition: color 0.3s linear;
 	}
@@ -60,9 +60,19 @@
 .menu {
 	clip-path: circle(30px at 100% 0px);
 }
-@media screen and (min-width: 768px) {
-	/* #root.scroll-none {
-		max-height: calc(100vh + 1px);
-		overflow: scroll;
-	} */
+
+#root.scroll-none {
+	max-height: calc(100vh + 0.5px);
+	overflow: hidden;
+}
+
+/* =================================
+   css for the swiper testimonial
+===================================== */
+
+.swiper-pagination .swiper-pagination-bullet-active {
+	@apply bg-dark shadow-sm cursor-pointer;
+	width: 9px;
+	height: 9px;
+	transition: all 0.3s ease-in-out;
 }

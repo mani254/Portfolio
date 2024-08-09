@@ -23,7 +23,7 @@ function App() {
 			window.innerWidth > 600 ? setMobile(false) : setMobile(true);
 		}
 		window.addEventListener("resize", handleResize);
-		handleResize(); // Set initial state based on current window size
+		handleResize();
 
 		return () => {
 			window.removeEventListener("resize", handleResize);
@@ -120,7 +120,7 @@ function App() {
 	function scaleCursor() {
 		if (cursorRef.current) {
 			gsap.to(cursorRef.current, {
-				scale: 5.5,
+				scale: 4.5,
 				duration: 0.3,
 				ease: "power4.inOut",
 			});
@@ -139,7 +139,7 @@ function App() {
 	return (
 		<SmoothScroll>
 			<div className="bg-zinc-100 relative">
-				{!mobile && <div className="w-3 h-3 bg-black rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-70" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>}
+				{!mobile && <div className="w-3 h-3 bg-black rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-80" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>}
 				<RefsContext.Provider value={{ hoverRefs }}>
 					<MobileContext.Provider value={{ mobile }}>
 						<main id="main">
