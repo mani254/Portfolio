@@ -6,11 +6,13 @@ import twitter from '../assets/icons/twitter.svg'
 import github from '../assets/icons/github.svg'
 import discord from '../assets/icons/discord.svg'
 import youtube from '../assets/icons/youtube.svg'
+import footer1 from '../assets/images/footer-1.jpg'
+import footer2 from '../assets/images/footer-2.jpg'
 // import quote from '../assets/icons/quotes.svg'
 
 import logo from '../assets/images/logo.svg'
 
-export { emoji, logo }
+export { emoji, logo, footer1, footer2 }
 
 export { instagram, linkedin, twitter, github, discord, youtube }
 

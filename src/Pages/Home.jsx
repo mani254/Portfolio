@@ -1,12 +1,13 @@
 import React from "react";
 import Testimonials from "../Components/Testimonials";
+import Footer from "../Components/Footer";
 
 function Home() {
 	return (
 		<div>
 			<div className="h-screen"></div>
 			<Testimonials />
-			<div className="h-screen"></div>
+			<Footer />
 		</div>
 	);
 }

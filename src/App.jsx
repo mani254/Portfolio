@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./App.css";
 
 export const RefsContext = React.createContext();
@@ -10,6 +11,8 @@ import SmoothScroll from "./Components/smoothScroll";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import Navbar from "./Components/Navbar";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 	const [mobile, setMobile] = useState(true);
@@ -33,9 +36,9 @@ function App() {
 	//event listener to check and handle custorm cusor follow the cursor
 	useEffect(() => {
 		if (mobile) return;
-		window.addEventListener("mousemove", handleMouseMove);
+		document.addEventListener("mousemove", handleMouseMove);
 		return () => {
-			window.removeEventListener("mousemove", handleMouseMove);
+			document.removeEventListener("mousemove", handleMouseMove);
 		};
 	}, [mobile]);
 
@@ -53,15 +56,27 @@ function App() {
 
 		if (!mobile && hoverRefs.current.length > 0) {
 			hoverRefs.current.forEach((ref) => {
+				// const rect = ref.getBoundingClientRect();
+				// const isHovered = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+				// const isNear = x >= rect.left - 20 && x <= rect.right + 20 && y >= rect.top - 10 && y <= rect.bottom + 10;
 				const rect = ref.getBoundingClientRect();
-				const isHovered = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-				const isNear = x >= rect.left - 20 && x <= rect.right + 20 && y >= rect.top - 10 && y <= rect.bottom + 10;
+				const scrollX = window.scrollX || window.pageXOffset;
+				const scrollY = window.scrollY || window.pageYOffset;
+
+				// Adjust the mouse position by the scroll offset
+				const adjustedX = x - scrollX;
+				const adjustedY = y - scrollY;
+
+				const isHovered = adjustedX >= rect.left && adjustedX <= rect.right && adjustedY >= rect.top && adjustedY <= rect.bottom;
+
+				const isNear = adjustedX >= rect.left - 20 && adjustedX <= rect.right + 20 && adjustedY >= rect.top - 10 && adjustedY <= rect.bottom + 10;
 
 				if (isNear) {
+					console.log("hello");
 					const centerX = rect.left + rect.width / 2;
 					const centerY = rect.top + rect.height / 2;
-					const deltaX = x - centerX;
-					const deltaY = y - centerY;
+					const deltaX = adjustedX - centerX;
+					const deltaY = adjustedY - centerY;
 					const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 					const maxDistance = 7;
 
@@ -81,9 +96,11 @@ function App() {
 						duration: 0.2,
 					});
 				}
+
 				if (isHovered) {
-					const clipX = x - rect.left;
-					const clipY = y - rect.top;
+					console.log("hello");
+					const clipX = adjustedX - rect.left;
+					const clipY = adjustedY - rect.top;
 					if (ref.textContent) {
 						ref.setAttribute("data-content", ref.textContent);
 					}
