@@ -54,9 +54,9 @@
 	width: 80%;
 }
 
-/* =================================
-   handle scroll whenn nav is open nav menu
-===================================== */
+/* ===========================================
+   stop scroll when  whenn nav is open nav menu
+================================================ */
 .menu {
 	clip-path: circle(30px at 100% 0px);
 }
@@ -75,4 +75,11 @@
 	width: 9px;
 	height: 9px;
 	transition: all 0.3s ease-in-out;
+}
+
+/* =================================
+   css for the hero section
+===================================== */
+.video-container video {
+	border: solid 2px #f6f5fa;
 }

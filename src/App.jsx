@@ -143,6 +143,7 @@ function App() {
 			});
 		}
 	}
+
 	function resetCursorScale() {
 		if (cursorRef.current) {
 			gsap.to(cursorRef.current, {
@@ -156,7 +157,7 @@ function App() {
 	return (
 		<SmoothScroll>
 			<div className="bg-zinc-100 relative">
-				{!mobile && <div className="w-3 h-3 bg-black rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-80" ref={cursorRef} style={{ position: "absolute", pointerEvents: "none" }}></div>}
+				{!mobile && <div className="w-3 h-3 bg-black rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-80" ref={cursorRef} style={{ pointerEvents: "none" }}></div>}
 				<RefsContext.Provider value={{ hoverRefs }}>
 					<MobileContext.Provider value={{ mobile }}>
 						<main id="main">

@@ -9,7 +9,8 @@ import youtube from '../assets/icons/youtube.svg'
 import footer1 from '../assets/images/footer-1.jpg'
 import footer2 from '../assets/images/footer-2.jpg'
 // import quote from '../assets/icons/quotes.svg'
-
+import bannerVideo from '../assets/videos/banner.mp4'
+import bannerImage from "../assets/images/banner-image.png"
 import logo from '../assets/images/logo.svg'
 
 export { emoji, logo, footer1, footer2 }
@@ -48,3 +49,5 @@ export const testimonialData = [
    }
 
 ]
+
+export { bannerVideo, bannerImage }

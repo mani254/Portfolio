@@ -1,13 +1,14 @@
 import React from "react";
-import Testimonials from "../Components/Testimonials";
-import Footer from "../Components/Footer";
+// import Testimonials from "../Components/Testimonials";
+// import Footer from "../Components/Footer";
+import Hero from "../Components/Hero";
 
 function Home() {
 	return (
 		<div>
-			<div className="h-screen"></div>
-			<Testimonials />
-			<Footer />
+			<Hero />
+			{/* <Testimonials /> */}
+			{/* <Footer /> */}
 		</div>
 	);
 }
