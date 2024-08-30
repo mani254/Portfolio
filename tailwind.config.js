@@ -29,7 +29,8 @@ export default {
          colors: {
             dark: ({ opacityValue }) => {
                return `rgba(45, 45, 45, ${opacityValue})`
-            }
+            },
+            bright: "#e3e3e3"
          }
       },
    },

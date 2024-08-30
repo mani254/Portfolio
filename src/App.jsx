@@ -16,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 	const [mobile, setMobile] = useState(true);
+	const [hasDarkBg, setHasDarkBg] = useState(false);
 
 	const cursorRef = useRef(null);
 	const hoverRefs = useRef([]);
@@ -45,6 +46,7 @@ function App() {
 	function handleMouseMove(event) {
 		const x = event.pageX;
 		const y = event.pageY;
+
 		if (cursorRef.current) {
 			gsap.to(cursorRef.current, {
 				left: x,
@@ -72,7 +74,6 @@ function App() {
 				const isNear = adjustedX >= rect.left - 20 && adjustedX <= rect.right + 20 && adjustedY >= rect.top - 10 && adjustedY <= rect.bottom + 10;
 
 				if (isNear) {
-					console.log("hello");
 					const centerX = rect.left + rect.width / 2;
 					const centerY = rect.top + rect.height / 2;
 					const deltaX = adjustedX - centerX;
@@ -111,6 +112,24 @@ function App() {
 					ref.classList.remove("highlight");
 				}
 			});
+		}
+
+		if (!mobile && hoverRefs.current.length > 0) {
+			let target = event.target;
+			let insideDarkSection = false;
+
+			while (target && target !== document) {
+				if (target.tagName === "SECTION" && target.classList.contains("has-dark")) {
+					setHasDarkBg(true); // Set to true when inside a dark section
+					insideDarkSection = true;
+					break;
+				}
+				target = target.parentElement;
+			}
+
+			if (!insideDarkSection) {
+				setHasDarkBg(false);
+			}
 		}
 	}
 
@@ -157,7 +176,7 @@ function App() {
 	return (
 		<SmoothScroll>
 			<div className="bg-zinc-100 relative">
-				{!mobile && <div className="w-3 h-3 bg-black rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-80" ref={cursorRef} style={{ pointerEvents: "none" }}></div>}
+				{!mobile && <div className={`w-3 h-3 ${hasDarkBg ? "bg-white" : "bg-black"} rounded-full absolute transform-x-[-50%] transform-y-[-50%] z-50 bg-opacity-80`} ref={cursorRef} style={{ pointerEvents: "none" }}></div>}
 				<RefsContext.Provider value={{ hoverRefs }}>
 					<MobileContext.Provider value={{ mobile }}>
 						<main id="main">

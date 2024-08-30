@@ -12,6 +12,14 @@ import footer2 from '../assets/images/footer-2.jpg'
 import bannerVideo from '../assets/videos/banner.mp4'
 import bannerImage from "../assets/images/banner-image.png"
 import logo from '../assets/images/logo.svg'
+import profile from '../assets/images/profile.jpg'
+import aboutBackground from '../assets/images/about-background.png'
+
+import about1 from '../assets/images/about-1.png';
+import about2 from '../assets/images/about-2.png';
+import about3 from '../assets/images/about-3.jpg';
+import about4 from '../assets/images/about-4.png';
+import about5 from '../assets/images/about-5.jpg';
 
 export { emoji, logo, footer1, footer2 }
 
@@ -51,3 +59,5 @@ export const testimonialData = [
 ]
 
 export { bannerVideo, bannerImage }
+
+export { profile, aboutBackground, about1, about2, about3, about4, about5 }

@@ -54,18 +54,6 @@
 	width: 80%;
 }
 
-/* ===========================================
-   stop scroll when  whenn nav is open nav menu
-================================================ */
-.menu {
-	clip-path: circle(30px at 100% 0px);
-}
-
-#root.scroll-none {
-	max-height: calc(100vh + 0.5px);
-	overflow: hidden;
-}
-
 /* =================================
    css for the swiper testimonial
 ===================================== */
@@ -82,4 +70,8 @@
 ===================================== */
 .video-container video {
 	border: solid 2px #f6f5fa;
+}
+
+.menu {
+	clip-path: circle(10px at 100% 0px);
 }

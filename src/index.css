@@ -52,6 +52,13 @@
 	span {
 		@apply text-inherit;
 	}
+	h2.split > * {
+		display: inline-block;
+		color: inherit;
+		line-height: inherit;
+		font-family: inherit;
+		font-size: inherit;
+	}
 }
 
 @layer components {
@@ -81,8 +88,13 @@
 		@apply w-full outline-none h-28 p-2 border-b border-dark shadow-md bg-transparent;
 	}
 	.btn {
-		@apply px-10 py-3 shadow-sm rounded-lg shadow-purple-500 text-white  font-semibold tracking-wider hover:tracking-widest hover:scale-[1.02] hover:shadow-md hover:shadow-violet-500;
-		background: linear-gradient(to right, #7158e2, #cd84f1);
+		@apply px-8 py-2 shadow-sm rounded-lg  font-semibold tracking-wider hover:tracking-widest hover:scale-[1.02] hover:shadow-md;
 		transition: all 0.3s ease-in-out;
+	}
+	.btn-1 {
+		@apply shadow-zinc-500 hover:shadow-zinc-500 text-zinc-200 bg-dark;
+	}
+	.btn-2 {
+		@apply bg-zinc-400;
 	}
 }

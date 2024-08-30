@@ -27,16 +27,7 @@ function Hero() {
 
 	return (
 		<section className="h-screen max-h-[850px] relative" style={{ background: "#F6F5FA" }}>
-			<div className="video-container w-full h-full fixed pt-20 overflow-hidden flex items-center justify-center">{videoSrc ? <video src={videoSrc} autoPlay loop muted className={`w-full h-[70%] md:h-full object-cover object-center transition-opacity ${videoLoaded ? "blodk" : "hidden"}`} ref={videoRef} /> : <img src={bannerImage} alt="Banner" loading="lazy" className={`w-full h-[70%] md:h-full object-cover object-center ${videoLoaded ? "hidden" : "block"}`} />}</div>
-			<div className="hero-content relative container pt-20 h-full">
-				<h1 className="">
-					Creative <br /> Web Designer
-				</h1>
-
-				<h1 className="absolute right-0 bottom-10">
-					Passionate <br /> Web Developer
-				</h1>
-			</div>
+			<div className="video-container w-full h-full fixed pt-28 overflow-hidden flex items-center justify-center">{videoSrc ? <video src={videoSrc} autoPlay loop muted className={`w-full h-[70%] md:h-full object-cover object-center transition-opacity ${videoLoaded ? "blodk" : "hidden"}`} ref={videoRef} /> : <img src={bannerImage} alt="Banner" loading="lazy" className={`w-full h-[70%] md:h-full object-cover object-center ${videoLoaded ? "hidden" : "block"}`} />}</div>
 		</section>
 	);
 }
